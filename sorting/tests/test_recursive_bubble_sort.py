@@ -1,6 +1,7 @@
 import unittest
 from sorting.recursive_bubble_sort import bubble_sort_recursive
 
+
 class TestRecursiveBubbleSort(unittest.TestCase):
     def test_sorted_array(self):
         arr = [1, 2, 3, 4, 5]
@@ -26,6 +27,7 @@ class TestRecursiveBubbleSort(unittest.TestCase):
         arr = [5]
         bubble_sort_recursive(arr, len(arr))
         self.assertEqual(arr, [5])
+
 
 if __name__ == '__main__':
     unittest.main()
