@@ -23,11 +23,31 @@ class Graph:
                 visited.append(current)
                 stack.extend(node for node in self.graph[current] if node not in visited)
         return visited
+    
 
+adj_list = {
+    'a': ['b', 'c'],
+    'b': ['e'],
+    'c': ['d'],
+    'd': [],
+    'e': ['f'],
+    'f': ['d']
+}
 
-g = Graph(5)
-g.add_edge(1, 2)
-g.add_edge(1, 3)
-g.add_edge(2, 4)
-g.add_edge(3, 5)
-print(g.dfs(1))
+def dfs_recursive(graph, current, visited = None):
+    if visited is None:
+        visited = list()
+    visited.append(current)
+    for neighbors in graph[current]:
+        if neighbors not in visited:
+            dfs_recursive(graph, neighbors, visited);
+    return visited
+
+print(dfs_recursive(adj_list, 'a'))
+
+# g = Graph(5)
+# g.add_edge(1, 2)
+# g.add_edge(1, 3)
+# g.add_edge(2, 4)
+# g.add_edge(3, 5)
+# print(g.dfs(1))
