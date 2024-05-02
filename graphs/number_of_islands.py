@@ -10,35 +10,31 @@ You may assume all four edges of the grid are all surrounded by water.
 from typing import List
 from collections import deque
 def bfs(row, col, graph, visited):
-    queue = deque(list())
-    queue.append([row, col])
+    queue = deque()
+    queue.append((row, col))
     n = len(graph)
     m = len(graph[0])
-    
+    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]  # right, left, down, up
     while queue:
-        ele = queue.popleft()
-        crow = ele[0]
-        ccol = ele[1]
-        
-        for i in range(-1, 2):
-            for j in range(-1, 2):
-                nrow = crow + i
-                ncol = ccol + j
-                if nrow >=0 and nrow < n and ncol >=0 and ncol < m and graph[nrow][ncol] == "1" and visited[nrow][ncol] == 0:
-                    visited[nrow][ncol] = 1
-                    queue.append([nrow, ncol])
+        crow, ccol = queue.popleft()
+        for dr, dc in directions:
+            nrow = crow + dr
+            ncol = ccol + dc
+            if nrow >=0 and nrow < n and ncol >=0 and ncol < m and graph[nrow][ncol] == "1" and visited[nrow][ncol] == 0:
+                visited[nrow][ncol] = 1
+                queue.append([nrow, ncol])
 
-def number_of_islands(graph:List[List]) -> int:
-    n, m = len(graph), len(graph[0])
-    visited = [[0]*m]*n
+def number_of_islands(grid:List[List]) -> int:
+    n, m = len(grid), len(grid[0])
+    visited = [[0]*m for _ in range(n)]
     # print(visited)
     cnt = 0
     for row in range(n):
         for col in range(m):
-            if visited[row][col] == 0 and graph[row][col] == "1":
+            if visited[row][col] == 0 and grid[row][col] == "1":
+                bfs(row, col, grid, visited)
                 cnt += 1
-                bfs(row, col, graph, visited)
-    print(f"The number of islands in the grid are - {cnt}")
+    return cnt
     
 
-number_of_islands([["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]])
+print(number_of_islands([["1","1","0","0","0"],["1","1","0","0","0"],["0","0","1","0","0"],["0","0","0","1","1"]]))
