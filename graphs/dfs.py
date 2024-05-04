@@ -25,6 +25,19 @@ class Graph:
         return visited
     
 
+def dfs_matrix(graph_matrix, i, visited):
+    visited[i] = 1
+    for j in range(len(graph_matrix)):
+        if graph_matrix[i][j] == 1 and visited[j] == 0:
+            print(f"The pair of connected nodes are ({i}, {j})")
+            dfs_matrix(graph_matrix, j, visited)
+visited = [0]*3
+dfs_matrix([[1, 1, 0], [1, 1, 1], [0, 1, 1]], 0, visited)
+print(visited)
+
+
+    
+
 adj_list = {
     'a': ['b', 'c'],
     'b': ['e'],
@@ -43,7 +56,7 @@ def dfs_recursive(graph, current, visited = None):
             dfs_recursive(graph, neighbors, visited);
     return visited
 
-print(dfs_recursive(adj_list, 'a'))
+# print(dfs_recursive(adj_list, 'a'))
 
 # g = Graph(5)
 # g.add_edge(1, 2)

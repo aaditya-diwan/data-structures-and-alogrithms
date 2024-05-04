@@ -4,3 +4,14 @@ Arrays/.idea/misc.xml
 Arrays/.idea/.gitignore
 Arrays/.idea/modules.xml
 Arrays/.idea/vcs.xml
+
+# CPython
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+*.cpython-*
+
+*.xml
+
