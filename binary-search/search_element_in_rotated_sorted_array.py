@@ -5,7 +5,7 @@ def search_in_rotated_array(arr, ele):
     while left <= right:
         mid = (left + right) // 2
         if arr[mid] == ele:
-            return mid
+            return True
         
         # If the left half is sorted
         if arr[left] <= arr[mid]:
@@ -20,6 +20,6 @@ def search_in_rotated_array(arr, ele):
             else:
                 right = mid - 1
 
-    return -1  # Element not found
+    return False  # Element not found
 
-print(search_in_rotated_array([7, 8, 9, 1, 2, 3, 4, 5, 6], 9))
+print(search_in_rotated_array([1,0,1,1,1], 0))
